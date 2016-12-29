@@ -1,12 +1,14 @@
 package com.till.operations;
 
 import com.till.stock.Product;
+import java.math.BigDecimal;
 
 /**
- * Created by Костя on 16.12.2016.
+ * Created by Константин Кабанов on 16.12.2016.
  */
 public abstract class Order {
-    Product price;
-    String product;
-    abstract void execute(Product ProductName);
+    protected BigDecimal price;
+    protected Product product;
+
+    public abstract void execute();
 }

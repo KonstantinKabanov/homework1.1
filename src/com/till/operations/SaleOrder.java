@@ -1,27 +1,21 @@
 package com.till.operations;
 
 import com.till.stock.Product;
+import java.math.BigDecimal;
 
-import static sun.applet.AppletViewer.x;
 
 /**
- * Created by Костя on 16.12.2016.
+ * Created by Константин Кабанов on 16.12.2016.
  */
-public abstract class SaleOrder extends Order {
-    public Product salePrice;
+public class SaleOrder extends Order {
 
-    public SaleOrder(String Product){
+    public SaleOrder(Product product, BigDecimal price){
+        this.product = product;
+        this.price = price;
         }
 
-
-    public abstract void execute(String Product);{
-
-        Product salePrice = new Product ("y");
-
-        {
-        price = salePrice;
+    @Override
+    public void execute(){
+        product.setSalePrice(price);
     }
-    }
-
-
 }

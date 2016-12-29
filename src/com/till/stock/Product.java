@@ -1,31 +1,38 @@
 package com.till.stock;
 
 import java.math.BigDecimal;
-
-import static java.math.BigDecimal.*;
-import static java.math.BigDecimal.valueOf;
+import java.math.MathContext;
 
 /**
- * Created by Костя on 16.12.2016.
+ * Created by Константин Кабанов on 16.12.2016.
  */
 public class Product {
-    BigDecimal purchasePrice;
-    BigDecimal salePrice;
-    double percent;
-    public Product( int x, int y){
-        BigDecimal purchasePrice = BigDecimal.valueOf(valueOf(x));
-        BigDecimal salePrice = BigDecimal.valueOf(valueOf(y));
+
+    private BigDecimal purchasePrice; // исправил поля
+    private BigDecimal salePrice;
+    public double percent;
+    private String name;
+
+    public Product( String name){
+        purchasePrice = BigDecimal.valueOf(0);
+        salePrice = BigDecimal.valueOf(0);
+        this.name = name;
     }
 
-    public Product(String x) {
-
+    public void setPurchasePrice (BigDecimal purchasePrice){
+        this.purchasePrice = purchasePrice;
     }
 
-    double percent() {
-        return (valueOf("y")) / valueOf("x") * 100 % -100;
+    public void setSalePrice ( BigDecimal salePrice){
+        this.salePrice = salePrice;
+        recountingPercent();
     }
 
-    private int valueOf(Object y) {
-        return 0;
+    private void recountingPercent (){
+        percent = salePrice
+                .divide(purchasePrice, MathContext.DECIMAL64) // salePrice / purchasePrice
+                .multiply(BigDecimal.valueOf(100)) // * 100%
+                .subtract(BigDecimal.valueOf(100)) // - 100%
+                .doubleValue(); // приведение к даблу
     }
 }

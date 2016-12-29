@@ -1,21 +1,20 @@
 package com.till.operations;
 
 import com.till.stock.Product;
+import java.math.BigDecimal;
 
 /**
- * Created by Костя on 16.12.2016.
+ * Created by Константин Кабанов on 16.12.2016.
  */
-public abstract class PurchaseOrder extends Order {
+public class PurchaseOrder extends Order {
 
-    public Product purchasePrice;
-    public void execute(String Product)
+    public PurchaseOrder(Product product, BigDecimal price) {    // конструктор
+        this.product = product;
+        this.price = price;
 
-    {
-        price = purchasePrice;
-        purchasePrice = new Product("x");
     }
-
-    PurchaseOrder(String Product) {
-
+    @Override
+    public void execute(){
+        product.setPurchasePrice(price);
     }
 }
